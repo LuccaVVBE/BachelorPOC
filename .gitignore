@@ -1,0 +1,7 @@
+CI_Monolith/writable/debugbar/*
+
+CI_Monolith/writable/logs/*
+
+CI_Monolith/writable/session/*
+
+CI_Monolith/app/Config/*
