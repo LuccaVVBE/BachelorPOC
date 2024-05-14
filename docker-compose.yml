@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  apache1:
+    build: ./CI_Microservice_BFF
+    container_name: apache1
+    networks:
+      - apache_network
+    ports:
+      - "8081:80"
+
+  apache2:
+    build: ./CI_Microservice_CallLog
+    container_name: apache2
+    networks:
+      - apache_network
+    ports:
+      - "8082:80"
+
+  apache3:
+    build: ./CI_Microservice_Telephone
+    container_name: apache3
+    networks:
+      - apache_network
+    ports:
+      - "8083:80"
+
+  apache4:
+    build: ./CI_Microservice_User
+    container_name: apache4
+    networks:
+      - apache_network
+    ports:
+      - "8084:80"
+
+networks:
+  apache_network:
+    driver: bridge
