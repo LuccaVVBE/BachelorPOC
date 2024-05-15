@@ -5,8 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'UserBFF_Controller::login');
-$routes->post('/', 'UserBFF_Controller::validate_login');
-$routes->get('/dashboard', 'TelephoneBFF_Controller::index');
-$routes->get('/usage', 'Call_LogBFF_Controller::index');
-$routes->get('/logout', 'UserBFF_Controller::logout');
+$routes->get('/', 'User::login');
+$routes->post('/', 'User::validate_login');
+$routes->get('/dashboard', 'Telephone::index');
+$routes->get('/usage', 'Call_Log::index');
+$routes->get('/logout', 'User::logout');

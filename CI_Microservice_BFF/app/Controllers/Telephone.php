@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
 
-class TelephoneBFF_Controller extends BaseController
+class Telephone extends BaseController
 {
     use ResponseTrait;
 

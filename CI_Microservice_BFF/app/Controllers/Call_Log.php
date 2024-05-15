@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
 
-class CallLogsBFF_Controller extends BaseController
+class Call_Log extends BaseController
 {
     use ResponseTrait;
 

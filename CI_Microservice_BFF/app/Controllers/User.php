@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
 
-class UserBff_Controller extends BaseController
+class User extends BaseController
 {
     use ResponseTrait;
 
