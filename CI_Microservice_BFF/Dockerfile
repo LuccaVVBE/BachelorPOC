@@ -3,7 +3,13 @@ FROM php:8.3-apache
 
 # Install any additional PHP extensions if needed
 #RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN docker-php-ext-install intl
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    libonig-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install mbstring
+RUN docker-php-ext-enable intl mbstring
 
 # Copy your application code to the Apache document root
 COPY . /var/www/html/
