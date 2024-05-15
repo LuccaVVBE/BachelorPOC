@@ -27,7 +27,7 @@ class User extends BaseController
         $pass = $this->request->getPost('password');
 
         // Validate login credentials
-        $login = login_fetch($user, $pass);
+        $login = $this->login_fetch($user, $pass);
 
         if ($login['status'] == 'success') {
             // Create session for logged-in user
@@ -47,7 +47,7 @@ class User extends BaseController
     {
         // Destroy session for logged-out user
         $session = session();
-        logout_fetch();
+        $this->logout_fetch();
         $session->destroy();
 
         return redirect()->to('/');
