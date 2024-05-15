@@ -3,9 +3,10 @@ FROM php:8.3-apache
 
 # Install any additional PHP extensions if needed
 #RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-install intl
 
 # Copy your application code to the Apache document root
-COPY ./CI_Microservice_BFF /var/www/html/
+COPY . /var/www/html/
 
 # Set the working directory
 WORKDIR /var/www/html
