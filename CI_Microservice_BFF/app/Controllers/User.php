@@ -20,7 +20,7 @@ class User extends BaseController
         return view('login');
     }
 
-    public function validateLogin()
+    public function validate_login()
     {
         // Retrieve username and password from request
         $user = $this->request->getPost('username');
