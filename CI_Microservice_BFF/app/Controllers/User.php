@@ -26,12 +26,10 @@ class User extends BaseController
         $user = $this->request->getPost('username');
         $pass = $this->request->getPost('password');
 
-        // Load user model
-        $userModel = model('UserModel');
-
         // Validate login credentials
-        $login = $userModel->login($user, $pass);
-        if (!empty($login)) {
+        $login = login_fetch($user, $pass);
+
+        if ($login['status'] == 'success') {
             // Create session for logged-in user
             $session = session();
             $session->set('username', $login[0]->username);
@@ -49,8 +47,50 @@ class User extends BaseController
     {
         // Destroy session for logged-out user
         $session = session();
+        logout_fetch();
         $session->destroy();
 
         return redirect()->to('/');
+    }
+
+    private function login_fetch($username, $password){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => 'http://localhost:8084/api/login',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => json_encode([
+                'username' => $username,
+                'password' => $password
+            ]),
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json'
+            ]
+        ]);
+
+        $result = json_decode(curl_exec($curl), true);
+
+        return $result;
+
+    }
+    
+    private function logout_fetch(){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => 'http://localhost:8084/api/logout',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json'
+            ]
+        ]);
+
+        $result = json_decode(curl_exec($curl), true);
+
+        return $result;
     }
 }

@@ -30,7 +30,7 @@ class Call_Log extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'http://localhost:8080/api/call-logs/' . $telephoneNumber,
+            CURLOPT_URL => 'http://localhost:8082/api/call-logs/' . $telephoneNumber,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_CUSTOMREQUEST => 'GET',

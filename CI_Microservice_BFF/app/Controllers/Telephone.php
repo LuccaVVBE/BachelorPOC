@@ -35,7 +35,7 @@ class Telephone extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'http://localhost:8080/api/telephones/' . $userId,
+            CURLOPT_URL => 'http://localhost:8083/api/telephones/' . $userId,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_CUSTOMREQUEST => 'GET',
