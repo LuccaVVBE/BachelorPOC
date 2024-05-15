@@ -18,6 +18,17 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html/
 RUN chmod -R 755 /var/www/html/
 
+# Enable mod_rewrite
+RUN a2enmod rewrite
+
+# Set up URL rewriting
+RUN { \
+        echo '<Directory "/var/www/html">'; \
+        echo '    AllowOverride All'; \
+        echo '</Directory>'; \
+    } | tee "$APACHE_CONFDIR/conf-available/rewrites.conf" \
+    && a2enconf rewrites
+
 # Set the working directory
 WORKDIR /var/www/html
 
