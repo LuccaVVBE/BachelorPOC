@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class CallLogs_API extends BaseController
+class Call_Log_API extends BaseController
 {
     public function index($number = null)
     {

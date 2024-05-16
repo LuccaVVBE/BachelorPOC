@@ -7,13 +7,13 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table = 'user';
+    protected $table = 'User';
     protected $primaryKey = 'id';
 
     function login($username, $password)
     {        
-        $query = $this->query("SELECT * FROM user WHERE username = '$username' AND password = '$password'");
-        $response = $query->getResult();
-        return $response;
+        $this->where('username',$username);
+        $this->where('password',$password);
+        return $this->findAll();
     }
 }

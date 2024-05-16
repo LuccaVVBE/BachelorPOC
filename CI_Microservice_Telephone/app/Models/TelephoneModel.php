@@ -11,7 +11,7 @@ class TelephoneModel extends Model
     
     function getByuser($userid)
     {
-        $query = $this->query("SELECT * FROM telephone_number WHERE user_id = '$userid'");
+        $query = $this->query("SELECT * FROM Telephone_Number WHERE user_id = '$userid'");
         $response = $query->getResult();
         return $response;
     }

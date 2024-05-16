@@ -26,9 +26,9 @@
         <?php foreach ($telephone as $key => $number){ ?>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Telephone Number: <?= $number->number; ?></div>
+                    <div class="card-header">Telephone Number: <?= $number['number']; ?></div>
                     <div class="card-body">
-                        <a href="usage?number=<?= $number->id; ?>" class="btn btn-primary">View Usage</a>
+                        <a href="usage?number=<?= $number['id']; ?>" class="btn btn-primary">View Usage</a>
                     </div>
                 </div>
             </div>

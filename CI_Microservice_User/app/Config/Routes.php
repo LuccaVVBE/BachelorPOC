@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->group('api', ['namespace' => 'App\Controllers'], function ($routes) {
-    $routes->get('users/login', 'Users::login');
-    $routes->post('users/validate_login', 'Users::validate_login');
-    $routes->get('users/logout', 'Users::logout');
+    $routes->post('user/login', 'User::login');
+    $routes->post('user/validate_login', 'User::validate_login');
+    $routes->post('user/logout', 'User::logout');
 });

@@ -18,7 +18,7 @@ class Call_Log extends BaseController
 
         if ($log_data ['status'] == 'success') {
 
-            return return view('usage', ['callLogs' => $log_data['logs'], 'totalMinutes' => $log_data['totalMinutes'], 'totalMessages' => $log_data['totalMessages'], 'totalData'=>$log_data['totalData']]);
+            return view('usage', ['callLogs' => $log_data['logs'], 'totalMinutes' => $log_data['totalMinutes'], 'totalMessages' => $log_data['totalMessages'], 'totalData'=>$log_data['totalData']]);
         } else {
             // Return error response if call logs are not found
             return view('error/404');
@@ -30,7 +30,7 @@ class Call_Log extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'http://localhost:8082/api/call-logs/' . $telephoneNumber,
+            CURLOPT_URL => 'http://apache2/public/api/call-logs/' . $telephoneNumber,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_CUSTOMREQUEST => 'GET',
@@ -40,7 +40,6 @@ class Call_Log extends BaseController
         ]);
         
         $result = json_decode(curl_exec($curl), true);
-
         return $result;
     }
 }

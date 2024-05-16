@@ -15,7 +15,6 @@ class Telephone extends BaseController
 
         // Proxy request to telephone number microservice to fetch telephone numbers for the current user
         $telephone_data = $this->fetchTelephoneNumbersFromMicroservice($userId);
-
         if ($telephone_data['status'] == 'success') {
             // Prepare aggregated data to be passed to the view
             $data = [
@@ -35,7 +34,7 @@ class Telephone extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'http://localhost:8083/api/telephones/' . $userId,
+            CURLOPT_URL => 'http://apache3/public/api/telephones/' . $userId,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_CUSTOMREQUEST => 'GET',

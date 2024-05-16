@@ -4,15 +4,15 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Telephones extends BaseController
+class Telephone extends BaseController
 {
-    public function index()
+    public function index($userid)
     {
         $session = session();
         $telephoneModel = model('TelephoneModel');
-
+        
         // Retrieve telephone numbers associated with the current user
-        $telephones = $telephoneModel->getByUser($session->get('id'));
+        $telephones = $telephoneModel->getByUser($userid);
 
         // Prepare JSON response
         $response = [
@@ -22,7 +22,6 @@ class Telephones extends BaseController
 
         // Set content type header to application/json
         $this->response->setContentType('application/json');
-
         // Return JSON response
         return $this->response->setJSON($response);
     }

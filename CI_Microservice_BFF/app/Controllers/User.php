@@ -13,7 +13,7 @@ class User extends BaseController
         // Check if user is already logged in
         if (session()->get('id') != null) {
             // Redirect to dashboard if user is already logged in
-            return redirect()->to('/dashboard');
+            return redirect()->to('public/dashboard');
         }
 
         // Return JSON response indicating login page
@@ -29,14 +29,14 @@ class User extends BaseController
         // Validate login credentials
         $login = $this->login_fetch($user, $pass);
 
-        if ($login['status'] == 'success') {
+        if (!empty($login['status']) && $login['status'] == 'success') {
             // Create session for logged-in user
             $session = session();
-            $session->set('username', $login[0]->username);
-            $session->set('id', $login[0]->id);
+            $session->set('username', $login['username']);
+            $session->set('id', $login['user_id']);
 
             // Return JSON response indicating successful login
-            return redirect()->to('/dashboard');
+            return redirect()->to('public/dashboard');
         } else {
             // Return JSON response indicating failed login attempt
             return view('login', ['error' => 'Invalid username or password']);
@@ -57,7 +57,7 @@ class User extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'http://localhost:8084/api/login',
+            CURLOPT_URL => 'http://apache4/public/api/user/validate_login',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_CUSTOMREQUEST => 'POST',
@@ -69,8 +69,10 @@ class User extends BaseController
                 'Content-Type: application/json'
             ]
         ]);
-
+        
         $result = json_decode(curl_exec($curl), true);
+        var_dump($result);
+        var_dump(curl_error($curl));
 
         return $result;
 
@@ -80,7 +82,7 @@ class User extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'http://localhost:8084/api/logout',
+            CURLOPT_URL => 'http://apache4/public/api/user/logout',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_CUSTOMREQUEST => 'POST',

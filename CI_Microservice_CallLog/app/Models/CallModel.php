@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class CallModel extends Model
 {
-    protected $table = 'call_log';
+    protected $table = 'Call_Log';
     protected $primaryKey = 'id';
     protected $allowedFields = ['telephone_id', 'call_date', 'call_time', 'duration', 'call_type', 'call_number', 'call_cost'];
 
