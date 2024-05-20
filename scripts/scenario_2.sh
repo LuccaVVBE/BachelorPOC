@@ -18,7 +18,7 @@ send_requests() {
         if ((i % 10 == 9)); then
             wait
         fi
-        sleep 0.003
+        sleep 0.009
     done
     wait
 }

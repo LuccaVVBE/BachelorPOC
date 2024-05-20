@@ -47,7 +47,7 @@ for SCRIPT_NAME in "${scripts[@]}"; do
     # Extract the scenario number from the script name
     SCENARIO=$(echo $SCRIPT_NAME | grep -oP '(?<=scenario_)\d+')
 
-    for ROUND in {1..3}; do
+    for ROUND in {1..50}; do
     	echo "Ronde: $ROUND - Scenario: $SCENARIO"
         # Start powerjoular in the background and redirect its output to a log file
         sudo powerjoular -a dockerd -t > powerjoular.log 2>&1 &
