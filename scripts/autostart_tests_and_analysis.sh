@@ -6,7 +6,7 @@ cleanup_docker() {
 
     # Stop all active docker containers
     sudo docker stop $(sudo docker ps -a -q)
-
+    sudo docker network prune -f
     sudo docker container prune -f
     cd -
 }
@@ -59,7 +59,7 @@ run_docker_and_monitor $monolith_folder $monitor_script "monolith_power_consumpt
 run_docker_and_monitor $microservices_folder $monitor_script "microservices_power_consumption.csv"
 
 # Run the analysis script (relative path)
-python3 analyze_power_consumption.py > analysis_output.log 2>&1
+#python3 analyze_power_consumption.py > analysis_output.log 2>&1
 
 # Optional: Notify that the process is completed
 echo "Process completed. Analysis results saved to analysis_output.log"

@@ -9,16 +9,15 @@ send_requests() {
 
     for ((i = 0; i < count; i++)); do
         if [[ $method == "POST" ]]; then
-            curl -s -o /dev/null -X POST -d "$data" -H "Content-Type: application/json" $url &
+            curl -s -o /dev/null -X POST -d "$data" -H "Content-Type: application/json" $url 
         else
-            curl -s -o /dev/null -X GET $url &
+            curl -s -o /dev/null -X GET $url 
         fi
 
         # Control the batch size and add a small delay
         if ((i % 10 == 9)); then
             wait
         fi
-        sleep 0.009
     done
     wait
 }

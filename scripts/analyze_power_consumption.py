@@ -21,52 +21,49 @@ df['CPU Energie'] = pd.to_numeric(df['CPU Energie'], errors='coerce')
 df['GPU Energie'] = pd.to_numeric(df['GPU Energie'], errors='coerce')
 df['Total Energie'] = pd.to_numeric(df['Total Energie'], errors='coerce')
 
-# Calculate averages
-df_avg = df.groupby(['Scenario', 'Application Type']).mean().reset_index()
-
 # Plotting
 sns.set(style="whitegrid")
 
-# Plot 1: Average Total Energie Consumption Comparison
+# Plot 1: Total Energy Consumption Comparison
 plt.figure(figsize=(12, 6))
-sns.barplot(x='Scenario', y='Total Energie', hue='Application Type', data=df_avg)
-plt.title('Average Total Energie Consumption Comparison')
+sns.barplot(x='Scenario', y='Total Energie', hue='Application Type', data=df)
+plt.title('Total Energy Consumption Comparison')
 plt.xlabel('Scenario')
-plt.ylabel('Total Energie')
+plt.ylabel('Total Energy')
 plt.legend(title='Application Type')
-plt.savefig('avg_total_energie_comparison.png')
+plt.savefig('total_energy_comparison.png')
 plt.show()
 
-# Plot 2: Average CPU and GPU Energie Consumption Comparison
+# Plot 2: CPU and GPU Energy Consumption Comparison
 plt.figure(figsize=(12, 6))
-df_avg_melted = df_avg.melt(id_vars=['Scenario', 'Application Type'], 
-                            value_vars=['CPU Energie', 'GPU Energie'], 
-                            var_name='Energie Type', value_name='Energie')
-sns.barplot(x='Scenario', y='Energie', hue='Application Type', data=df_avg_melted, errorbar=None)
-plt.title('Average CPU and GPU Energie Consumption Comparison')
+df_melted = df.melt(id_vars=['Scenario', 'Ronde', 'Application Type'], 
+                    value_vars=['CPU Energie', 'GPU Energie'], 
+                    var_name='Energy Type', value_name='Energy')
+sns.barplot(x='Scenario', y='Energy', hue='Application Type', data=df_melted, ci=None)
+plt.title('CPU and GPU Energy Consumption Comparison')
 plt.xlabel('Scenario')
-plt.ylabel('Energie')
+plt.ylabel('Energy')
 plt.legend(title='Application Type')
-plt.savefig('avg_cpu_gpu_energie_comparison.png')
+plt.savefig('cpu_gpu_energy_comparison.png')
 plt.show()
 
-# Plot 3: Average Tijd Comparison
+# Plot 3: Total Time Comparison
 plt.figure(figsize=(12, 6))
-sns.barplot(x='Scenario', y='Tijd', hue='Application Type', data=df_avg)
-plt.title('Average Tijd Comparison')
+sns.barplot(x='Scenario', y='Tijd', hue='Application Type', data=df)
+plt.title('Total Time Comparison')
 plt.xlabel('Scenario')
-plt.ylabel('Tijd')
+plt.ylabel('Total Time')
 plt.legend(title='Application Type')
-plt.savefig('avg_total_time_comparison.png')
+plt.savefig('total_time_comparison.png')
 plt.show()
 
-# Plot 4: Distribution of Total Energie Consumption
+# Plot 4: Distribution of Total Energy Consumption
 plt.figure(figsize=(12, 6))
 sns.boxplot(x='Scenario', y='Total Energie', hue='Application Type', data=df)
-plt.title('Distribution of Total Energie Consumption')
+plt.title('Distribution of Total Energy Consumption')
 plt.xlabel('Scenario')
-plt.ylabel('Total Energie')
+plt.ylabel('Total Energy')
 plt.legend(title='Application Type')
-plt.savefig('energie_distribution_comparison.png')
+plt.savefig('energy_distribution_comparison.png')
 plt.show()
 
